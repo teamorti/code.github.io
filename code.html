@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'envoi d'image (Côté Client)</title>
+</head>
+<body>
+
+    <form id="imageForm">
+        <label for="image">Choisissez une image :</label>
+        <input type="file" id="image" accept="image/*" required>
+        <br>
+        <input type="button" value="Envoyer" onclick="sendEmail()">
+    </form>
+
+    <script>
+        function sendEmail() {
+            var input = document.getElementById('image');
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    var imageBase64 = reader.result;
+
+                    // Utilisez 'imageBase64' pour envoyer l'image par e-mail,
+                    // mais cela nécessitera un service tiers pour envoyer des e-mails depuis le navigateur.
+
+                    console.log('Image prête pour l\'envoi :', imageBase64);
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                alert('Veuillez choisir une image.');
+            }
+        }
+    </script>
+
+</body>
+</html>
